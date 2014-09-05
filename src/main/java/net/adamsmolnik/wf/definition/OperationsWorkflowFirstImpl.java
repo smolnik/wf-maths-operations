@@ -18,19 +18,46 @@ public class OperationsWorkflowFirstImpl implements OperationsWorkflowFirst {
 
     private ResultClient resultClient = new ResultClientImpl();
 
+    /**
+     * Flow: <br>
+     * <pre>
+     * 1) parallel {
+     *      asynch: addResult = add(a, b)
+     *      asynch: subtractResult = subtract(a, b)
+     * } 
+     * 2) waitForAll (addResult, subtractResult) then parallel {
+     *      synch: display
+     *      asynch: multiplyOfPriorResults = multiply(addResult, subtractResult)
+     *      asynch: divideOfPriorResults = divide(addResult, subtractResult)
+     * }  
+     * 3) waitForAll (multiplyOfPriorResults, divideOfPriorResults) then {
+     *      synch: display
+     *      asynch: finalResult = add(multiplyOfPriorResults, divideOfPriorResults)
+     * }
+     * 4) waitForAll (finalResult) then {
+     *      synch: display
+     * }
+     * </pre>
+     * 
+     */
     @Override
     public void execute(double a, double b) {
+
+        Promise<String> processId = asPromise(ManagementFactory.getRuntimeMXBean().getName());
         Promise<Double> addResult = opsClient.add(a, b);
         Promise<Double> subtractResult = opsClient.subtract(a, b);
 
-        Promise<String> processId = asPromise(ManagementFactory.getRuntimeMXBean().getName());
-        Promise<Long> threadId = asPromise(Thread.currentThread().getId());
+        resultClient.display(asPromise("addResult"), addResult, processId);
+        resultClient.display(asPromise("subtractResult"), subtractResult, processId);
 
-        resultClient.display(asPromise("addResult"), addResult, processId, threadId);
-        resultClient.display(asPromise("subtractResult"), subtractResult, processId, threadId);
+        Promise<Double> multiplyOfPriorResults = opsClient.multiply(addResult, subtractResult, processId);
+        Promise<Double> divideOfPriorResults = opsClient.divide(addResult, subtractResult, processId);
 
-        Promise<Double> multiplyOfPriorResults = opsClient.multiply(addResult, subtractResult, processId, threadId);
-        resultClient.display(asPromise("multiplyOfPriorResults"), multiplyOfPriorResults, processId, threadId);
+        resultClient.display(asPromise("multiplyOfPriorResults"), multiplyOfPriorResults, processId);
+        resultClient.display(asPromise("divideOfPriorResults"), divideOfPriorResults, processId);
+
+        Promise<Double> wfResult = opsClient.add(multiplyOfPriorResults, divideOfPriorResults);
+        resultClient.display(asPromise("wfResult"), wfResult, processId);
     }
 
 }

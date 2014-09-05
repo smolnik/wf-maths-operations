@@ -12,7 +12,7 @@ import com.amazonaws.services.simpleworkflow.flow.annotations.WorkflowRegistrati
 @WorkflowRegistrationOptions(defaultExecutionStartToCloseTimeoutSeconds = 600)
 public interface OperationsWorkflowFirst {
 
-    @Execute(version = "1.0.3")
+    @Execute(version = "1.0.4")
     void execute(double a, double b);
 
 }

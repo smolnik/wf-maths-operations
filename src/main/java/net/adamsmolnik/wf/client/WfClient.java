@@ -19,7 +19,7 @@ public class WfClient {
         service.setEndpoint("https://swf.us-east-1.amazonaws.com");
         String domain = "net.adamsmolnik";
         OperationsWorkflowFirstClientExternal client = new OperationsWorkflowFirstClientExternalFactoryImpl(service, domain).getClient();
-        client.execute(2, 3);
+        client.execute(4, 2);
         TimeUnit.SECONDS.sleep(10);
     }
 
