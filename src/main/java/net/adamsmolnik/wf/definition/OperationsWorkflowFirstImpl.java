@@ -1,5 +1,7 @@
 package net.adamsmolnik.wf.definition;
 
+import static com.amazonaws.services.simpleworkflow.flow.core.Promise.asPromise;
+import java.lang.management.ManagementFactory;
 import net.adamsmolnik.activities.maths.OperationsClient;
 import net.adamsmolnik.activities.maths.OperationsClientImpl;
 import net.adamsmolnik.activities.util.ResultClient;
@@ -21,11 +23,14 @@ public class OperationsWorkflowFirstImpl implements OperationsWorkflowFirst {
         Promise<Double> addResult = opsClient.add(a, b);
         Promise<Double> subtractResult = opsClient.subtract(a, b);
 
-        resultClient.display(Promise.asPromise("addResult = "), addResult);
-        resultClient.display(Promise.asPromise("subtractResult = "), subtractResult);
+        Promise<String> processId = asPromise(ManagementFactory.getRuntimeMXBean().getName());
+        Promise<Long> threadId = asPromise(Thread.currentThread().getId());
 
-        Promise<Double> multiplyOfPriorResults = opsClient.multiply(addResult, subtractResult);
-        resultClient.display(Promise.asPromise("multiplyOfPriorResults"), multiplyOfPriorResults);
+        resultClient.display(asPromise("addResult"), addResult, processId, threadId);
+        resultClient.display(asPromise("subtractResult"), subtractResult, processId, threadId);
+
+        Promise<Double> multiplyOfPriorResults = opsClient.multiply(addResult, subtractResult, processId, threadId);
+        resultClient.display(asPromise("multiplyOfPriorResults"), multiplyOfPriorResults, processId, threadId);
     }
 
 }

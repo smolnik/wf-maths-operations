@@ -8,8 +8,8 @@ import com.amazonaws.services.simpleworkflow.flow.annotations.Activities;
 import com.amazonaws.services.simpleworkflow.flow.annotations.ActivityRegistrationOptions;
 
 @ActivityRegistrationOptions(defaultTaskScheduleToStartTimeoutSeconds = 300, defaultTaskStartToCloseTimeoutSeconds = 10)
-@Activities(version = "1.0")
+@Activities(version = "1.0.3")
 public interface Result {
 
-    void display(String message, double result);
+    void display(String message, double result, String processId);
 }

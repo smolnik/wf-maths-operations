@@ -9,8 +9,8 @@ import java.util.Date;
 public class ResultImpl implements Result {
 
     @Override
-    public void display(String message, double result) {
-        System.out.println(new Date() + "|" + message + ": " + result);
+    public void display(String message, double result, String processId) {
+        System.out.println(new Date() + "|" + message + " -> " + result + " done by processId: " + processId);
     }
 
 }

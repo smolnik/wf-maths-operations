@@ -8,7 +8,7 @@ import com.amazonaws.services.simpleworkflow.flow.annotations.ActivityRegistrati
  *
  */
 @ActivityRegistrationOptions(defaultTaskScheduleToStartTimeoutSeconds = 300, defaultTaskStartToCloseTimeoutSeconds = 10)
-@Activities(version = "1.0")
+@Activities(version = "1.0.1")
 public interface Operations {
 
     double add(double a, double b);
