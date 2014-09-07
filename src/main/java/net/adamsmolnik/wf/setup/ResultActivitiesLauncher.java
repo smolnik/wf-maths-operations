@@ -1,6 +1,6 @@
 package net.adamsmolnik.wf.setup;
 
-import net.adamsmolnik.activities.util.ResultImpl;
+import net.adamsmolnik.activities.util.ResultActivitiesImpl;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.services.simpleworkflow.AmazonSimpleWorkflow;
 import com.amazonaws.services.simpleworkflow.AmazonSimpleWorkflowClient;
@@ -17,7 +17,7 @@ public class ResultActivitiesLauncher {
         AmazonSimpleWorkflow service = new AmazonSimpleWorkflowClient(config);
         service.setEndpoint("https://swf.us-east-1.amazonaws.com");
         ActivityWorker acw = new ActivityWorker(service, "net.adamsmolnik", "resTasks");
-        acw.addActivitiesImplementation(new ResultImpl());
+        acw.addActivitiesImplementation(new ResultActivitiesImpl());
         acw.start();
     }
 

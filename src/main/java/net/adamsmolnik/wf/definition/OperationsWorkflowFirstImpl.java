@@ -2,10 +2,10 @@ package net.adamsmolnik.wf.definition;
 
 import static com.amazonaws.services.simpleworkflow.flow.core.Promise.asPromise;
 import java.lang.management.ManagementFactory;
-import net.adamsmolnik.activities.maths.OperationsClient;
-import net.adamsmolnik.activities.maths.OperationsClientImpl;
-import net.adamsmolnik.activities.util.ResultClient;
-import net.adamsmolnik.activities.util.ResultClientImpl;
+import net.adamsmolnik.activities.maths.OperationActivitiesClient;
+import net.adamsmolnik.activities.maths.OperationActivitiesClientImpl;
+import net.adamsmolnik.activities.util.ResultActivitiesClient;
+import net.adamsmolnik.activities.util.ResultActivitiesClientImpl;
 import com.amazonaws.services.simpleworkflow.flow.core.Promise;
 
 /**
@@ -14,9 +14,9 @@ import com.amazonaws.services.simpleworkflow.flow.core.Promise;
  */
 public class OperationsWorkflowFirstImpl implements OperationsWorkflowFirst {
 
-    private OperationsClient opsClient = new OperationsClientImpl();
+    private OperationActivitiesClient opsClient = new OperationActivitiesClientImpl();
 
-    private ResultClient resultClient = new ResultClientImpl();
+    private ResultActivitiesClient resultClient = new ResultActivitiesClientImpl();
 
     /**
      * Flow: <br>
@@ -41,8 +41,7 @@ public class OperationsWorkflowFirstImpl implements OperationsWorkflowFirst {
      * 
      */
     @Override
-    public void execute(double a, double b) {
-
+    public Promise<Double> execute(double a, double b) {
         Promise<String> processId = asPromise(ManagementFactory.getRuntimeMXBean().getName());
         Promise<Double> addResult = opsClient.add(a, b);
         Promise<Double> subtractResult = opsClient.subtract(a, b);
@@ -58,6 +57,7 @@ public class OperationsWorkflowFirstImpl implements OperationsWorkflowFirst {
 
         Promise<Double> wfResult = opsClient.add(multiplyOfPriorResults, divideOfPriorResults);
         resultClient.display(asPromise("wfResult"), wfResult, processId);
+        return wfResult;
     }
 
 }

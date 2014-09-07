@@ -4,7 +4,7 @@ package net.adamsmolnik.activities.maths;
  * @author ASmolnik
  *
  */
-public class OperationsImpl implements Operations {
+public class OperationActivitiesImpl implements OperationActivities {
 
     @Override
     public double add(double a, double b) {

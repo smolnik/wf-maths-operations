@@ -1,6 +1,6 @@
 package net.adamsmolnik.wf.setup;
 
-import net.adamsmolnik.activities.maths.OperationsImpl;
+import net.adamsmolnik.activities.maths.OperationActivitiesImpl;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.services.simpleworkflow.AmazonSimpleWorkflow;
 import com.amazonaws.services.simpleworkflow.AmazonSimpleWorkflowClient;
@@ -17,7 +17,7 @@ public class OperationsActivitiesLauncher {
         AmazonSimpleWorkflow service = new AmazonSimpleWorkflowClient(config);
         service.setEndpoint("https://swf.us-east-1.amazonaws.com");
         ActivityWorker acw = new ActivityWorker(service, "net.adamsmolnik", "opsTasks");
-        acw.addActivitiesImplementation(new OperationsImpl());
+        acw.addActivitiesImplementation(new OperationActivitiesImpl());
         acw.start();
     }
 

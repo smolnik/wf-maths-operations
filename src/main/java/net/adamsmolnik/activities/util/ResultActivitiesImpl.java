@@ -6,7 +6,7 @@ import java.util.Date;
  * @author ASmolnik
  *
  */
-public class ResultImpl implements Result {
+public class ResultActivitiesImpl implements ResultActivities {
 
     @Override
     public void display(String message, double result, String processId) {
