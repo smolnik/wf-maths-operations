@@ -12,13 +12,17 @@ import com.amazonaws.services.simpleworkflow.flow.core.Promise;
 import com.amazonaws.services.simpleworkflow.flow.junit.FlowBlockJUnit4ClassRunner;
 import com.amazonaws.services.simpleworkflow.flow.junit.WorkflowTest;
 
+/**
+ * @author ASmolnik
+ *
+ */
 @RunWith(FlowBlockJUnit4ClassRunner.class)
 public class PromiseTest {
 
     @Rule
     public WorkflowTest workflowTest = new WorkflowTest();
 
-    OperationsWorkflowFirstClientFactory workflowFactory = new OperationsWorkflowFirstClientFactoryImpl();
+    OperationsWorkflowMixedClientFactory workflowFactory = new OperationsWorkflowMixedClientFactoryImpl();
 
     @Before
     public void setUp() throws Exception {
@@ -34,12 +38,12 @@ public class PromiseTest {
                 super.display(message, result, processId);
             }
         });
-        workflowTest.addWorkflowImplementationType(OperationsWorkflowFirstImpl.class);
+        workflowTest.addWorkflowImplementationType(OperationsWorkflowMixedImpl.class);
     }
 
     @Test(expected = IllegalStateException.class)
     public void fetchResultTooEarly() {
-        OperationsWorkflowFirstClient workflow = workflowFactory.getClient();
+        OperationsWorkflowMixedClient workflow = workflowFactory.getClient();
         Promise<Double> result = workflow.execute(5, 2);
         assertNotReady(result);
         org.junit.Assert.assertFalse("should not be ready yet", result.isReady());

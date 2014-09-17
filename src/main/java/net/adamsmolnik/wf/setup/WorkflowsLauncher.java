@@ -1,6 +1,6 @@
 package net.adamsmolnik.wf.setup;
 
-import net.adamsmolnik.wf.definition.OperationsWorkflowFirstImpl;
+import net.adamsmolnik.wf.definition.OperationsWorkflowMixedImpl;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.services.simpleworkflow.AmazonSimpleWorkflow;
 import com.amazonaws.services.simpleworkflow.AmazonSimpleWorkflowClient;
@@ -17,7 +17,7 @@ public class WorkflowsLauncher {
         AmazonSimpleWorkflow service = new AmazonSimpleWorkflowClient(config);
         service.setEndpoint("https://swf.us-east-1.amazonaws.com");
         WorkflowWorker wfw = new WorkflowWorker(service, "net.adamsmolnik", "wfTasksFirst");
-        wfw.addWorkflowImplementationType(OperationsWorkflowFirstImpl.class);
+        wfw.addWorkflowImplementationType(OperationsWorkflowMixedImpl.class);
         wfw.start();
     }
 

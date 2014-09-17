@@ -11,6 +11,10 @@ import com.amazonaws.services.simpleworkflow.flow.core.Promise;
 import com.amazonaws.services.simpleworkflow.flow.junit.FlowBlockJUnit4ClassRunner;
 import com.amazonaws.services.simpleworkflow.flow.junit.WorkflowTest;
 
+/**
+ * @author ASmolnik
+ *
+ */
 @RunWith(FlowBlockJUnit4ClassRunner.class)
 public class OperationsWorkflowSequentialTest {
 

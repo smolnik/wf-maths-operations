@@ -12,7 +12,7 @@ import com.amazonaws.services.simpleworkflow.flow.core.Promise;
  * @author ASmolnik
  *
  */
-public class OperationsWorkflowFirstImpl implements OperationsWorkflowFirst {
+public class OperationsWorkflowMixedImpl implements OperationsWorkflowMixed {
 
     private OperationActivitiesClient opsClient = new OperationActivitiesClientImpl();
 

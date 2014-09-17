@@ -19,7 +19,7 @@ public interface OperationActivities {
     double multiply(double a, double b);
 
     double divide(double a, double b);
-    
+
     double sum(List<Double> addends);
 
 }
