@@ -49,8 +49,8 @@ public class OperationsWorkflowFirstImpl implements OperationsWorkflowFirst {
         resultClient.display(asPromise("addResult"), addResult, processId);
         resultClient.display(asPromise("subtractResult"), subtractResult, processId);
 
-        Promise<Double> multiplyOfPriorResults = opsClient.multiply(addResult, subtractResult, processId);
-        Promise<Double> divideOfPriorResults = opsClient.divide(addResult, subtractResult, processId);
+        Promise<Double> multiplyOfPriorResults = opsClient.multiply(addResult, subtractResult);
+        Promise<Double> divideOfPriorResults = opsClient.divide(addResult, subtractResult);
 
         resultClient.display(asPromise("multiplyOfPriorResults"), multiplyOfPriorResults, processId);
         resultClient.display(asPromise("divideOfPriorResults"), divideOfPriorResults, processId);

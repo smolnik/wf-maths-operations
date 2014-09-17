@@ -1,5 +1,7 @@
 package net.adamsmolnik.activities.maths;
 
+import java.util.List;
+
 /**
  * @author ASmolnik
  *
@@ -24,6 +26,11 @@ public class OperationActivitiesImpl implements OperationActivities {
     @Override
     public double divide(double a, double b) {
         return a / b;
+    }
+
+    @Override
+    public double sum(List<Double> addends) {
+        return addends.stream().mapToDouble(d -> d).sum();
     }
 
 }
