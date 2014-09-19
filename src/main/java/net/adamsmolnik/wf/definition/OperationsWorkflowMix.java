@@ -11,9 +11,9 @@ import com.amazonaws.services.simpleworkflow.flow.core.Promise;
  */
 @Workflow
 @WorkflowRegistrationOptions(defaultExecutionStartToCloseTimeoutSeconds = 600)
-public interface OperationsWorkflowMixed {
+public interface OperationsWorkflowMix {
 
-    @Execute(version = "1.0.0")
+    @Execute(version = OpsMixWfVersion.VERSION)
     Promise<Double> execute(double a, double b);
 
 }

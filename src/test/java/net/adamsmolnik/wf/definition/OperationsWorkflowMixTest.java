@@ -16,23 +16,23 @@ import com.amazonaws.services.simpleworkflow.flow.junit.WorkflowTest;
  *
  */
 @RunWith(FlowBlockJUnit4ClassRunner.class)
-public class OperationsWorkflowMixedTest {
+public class OperationsWorkflowMixTest {
 
     @Rule
     public WorkflowTest workflowTest = new WorkflowTest();
 
-    OperationsWorkflowMixedClientFactory workflowFactory = new OperationsWorkflowMixedClientFactoryImpl();
+    OperationsWorkflowMixClientFactory workflowFactory = new OperationsWorkflowMixClientFactoryImpl();
 
     @Before
     public void setUp() throws Exception {
         workflowTest.addActivitiesImplementation(new OperationActivitiesImpl());
         workflowTest.addActivitiesImplementation(new ResultActivitiesImpl());
-        workflowTest.addWorkflowImplementationType(OperationsWorkflowMixedImpl.class);
+        workflowTest.addWorkflowImplementationType(OperationsWorkflowMixImpl.class);
     }
 
     @Test
     public void runWf() {
-        OperationsWorkflowMixedClient workflow = workflowFactory.getClient();
+        OperationsWorkflowMixClient workflow = workflowFactory.getClient();
         Promise<Double> result = workflow.execute(4, 2);
         assertEquals("runWf", Double.valueOf(15), result);
     }

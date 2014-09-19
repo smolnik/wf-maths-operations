@@ -12,7 +12,7 @@ import com.amazonaws.services.simpleworkflow.flow.core.Promise;
  * @author ASmolnik
  *
  */
-public class OperationsWorkflowMixedImpl implements OperationsWorkflowMixed {
+public class OperationsWorkflowMixImpl implements OperationsWorkflowMix {
 
     private OperationActivitiesClient opsClient = new OperationActivitiesClientImpl();
 
@@ -42,6 +42,9 @@ public class OperationsWorkflowMixedImpl implements OperationsWorkflowMixed {
      */
     @Override
     public Promise<Double> execute(double a, double b) {
+        /*
+        * Complete code here
+        */
         Promise<String> processId = asPromise(ManagementFactory.getRuntimeMXBean().getName());
         Promise<Double> addResult = opsClient.add(a, b);
         Promise<Double> subtractResult = opsClient.subtract(a, b);

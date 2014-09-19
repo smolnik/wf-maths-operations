@@ -1,0 +1,16 @@
+        Promise<String> processId = asPromise(ManagementFactory.getRuntimeMXBean().getName());
+        Promise<Double> addResult = opsClient.add(a, b);
+        Promise<Double> subtractResult = opsClient.subtract(a, b);
+
+        resultClient.display(asPromise("addResult"), addResult, processId);
+        resultClient.display(asPromise("subtractResult"), subtractResult, processId);
+
+        Promise<Double> multiplyOfPriorResults = opsClient.multiply(addResult, subtractResult);
+        Promise<Double> divideOfPriorResults = opsClient.divide(addResult, subtractResult);
+
+        resultClient.display(asPromise("multiplyOfPriorResults"), multiplyOfPriorResults, processId);
+        resultClient.display(asPromise("divideOfPriorResults"), divideOfPriorResults, processId);
+
+        Promise<Double> wfResult = opsClient.add(multiplyOfPriorResults, divideOfPriorResults);
+        resultClient.display(asPromise("wfResult"), wfResult, processId);
+        return wfResult;

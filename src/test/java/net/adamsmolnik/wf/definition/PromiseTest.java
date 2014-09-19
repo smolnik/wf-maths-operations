@@ -22,7 +22,7 @@ public class PromiseTest {
     @Rule
     public WorkflowTest workflowTest = new WorkflowTest();
 
-    OperationsWorkflowMixedClientFactory workflowFactory = new OperationsWorkflowMixedClientFactoryImpl();
+    OperationsWorkflowMixClientFactory workflowFactory = new OperationsWorkflowMixClientFactoryImpl();
 
     @Before
     public void setUp() throws Exception {
@@ -38,12 +38,12 @@ public class PromiseTest {
                 super.display(message, result, processId);
             }
         });
-        workflowTest.addWorkflowImplementationType(OperationsWorkflowMixedImpl.class);
+        workflowTest.addWorkflowImplementationType(OperationsWorkflowMixImpl.class);
     }
 
     @Test(expected = IllegalStateException.class)
     public void fetchResultTooEarly() {
-        OperationsWorkflowMixedClient workflow = workflowFactory.getClient();
+        OperationsWorkflowMixClient workflow = workflowFactory.getClient();
         Promise<Double> result = workflow.execute(5, 2);
         assertNotReady(result);
         org.junit.Assert.assertFalse("should not be ready yet", result.isReady());
