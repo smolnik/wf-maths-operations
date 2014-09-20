@@ -17,7 +17,7 @@ public class OperationsActivitiesLauncher {
         ClientConfiguration config = new ClientConfiguration().withSocketTimeout(70 * 1000);
         AmazonSimpleWorkflow service = new AmazonSimpleWorkflowClient(config);
         service.setEndpoint("https://swf.us-east-1.amazonaws.com");
-        ActivityWorker acw = new ActivityWorker(service, "student100", "mixTasks_" + OpsActivitiesVersion.VERSION);
+        ActivityWorker acw = new ActivityWorker(service, Domain.NAME, "mixTasks_" + OpsActivitiesVersion.VERSION);
         acw.addActivitiesImplementation(new OperationActivitiesImpl());
         acw.start();
     }

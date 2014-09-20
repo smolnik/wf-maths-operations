@@ -17,7 +17,7 @@ public class ResultActivitiesLauncher {
         ClientConfiguration config = new ClientConfiguration().withSocketTimeout(70 * 1000);
         AmazonSimpleWorkflow service = new AmazonSimpleWorkflowClient(config);
         service.setEndpoint("https://swf.us-east-1.amazonaws.com");
-        ActivityWorker acw = new ActivityWorker(service, "student100", "resTasks_" + ResultActivitiesVersion.VERSION);
+        ActivityWorker acw = new ActivityWorker(service, Domain.NAME, "resTasks_" + ResultActivitiesVersion.VERSION);
         acw.addActivitiesImplementation(new ResultActivitiesImpl());
         acw.start();
     }
