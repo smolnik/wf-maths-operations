@@ -17,7 +17,7 @@ public class WorkflowsLauncher {
         ClientConfiguration config = new ClientConfiguration().withSocketTimeout(70 * 1000);
         AmazonSimpleWorkflow service = new AmazonSimpleWorkflowClient(config);
         service.setEndpoint("https://swf.us-east-1.amazonaws.com");
-        WorkflowWorker wfw = new WorkflowWorker(service, "student100", "wfTasksFirst" + OpsMixWfVersion.VERSION);
+        WorkflowWorker wfw = new WorkflowWorker(service, "student100", "wfTasksFirst_" + OpsMixWfVersion.VERSION);
         wfw.addWorkflowImplementationType(OperationsWorkflowMixImpl.class);
         wfw.start();
     }

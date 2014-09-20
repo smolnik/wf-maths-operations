@@ -2,6 +2,6 @@ package net.adamsmolnik.activities.util;
 
 public interface ResultActivitiesVersion {
 
-    String VERSION = "1.0.0";
+    String VERSION = "1.0.1";
 
 }
