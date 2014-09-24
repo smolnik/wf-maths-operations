@@ -30,7 +30,11 @@ public class OperationActivitiesImpl implements OperationActivities {
 
     @Override
     public double sum(List<Double> addends) {
-        return addends.stream().mapToDouble(d -> d).sum();
+        double sum = 0;
+        for (Double addend : addends) {
+            sum += addend;
+        }
+        return sum;
     }
 
 }

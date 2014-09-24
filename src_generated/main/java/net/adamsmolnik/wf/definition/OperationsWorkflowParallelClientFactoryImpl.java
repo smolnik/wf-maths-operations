@@ -13,9 +13,8 @@ import com.amazonaws.services.simpleworkflow.flow.generic.GenericWorkflowClient;
 import com.amazonaws.services.simpleworkflow.model.WorkflowExecution;
 import com.amazonaws.services.simpleworkflow.model.WorkflowType;
 
-public class OperationsWorkflowParallelClientFactoryImpl extends WorkflowClientFactoryBase<OperationsWorkflowParallelClient> implements
-        OperationsWorkflowParallelClientFactory {
-
+public class OperationsWorkflowParallelClientFactoryImpl extends WorkflowClientFactoryBase<OperationsWorkflowParallelClient> implements OperationsWorkflowParallelClientFactory {
+    
     public OperationsWorkflowParallelClientFactoryImpl() {
         this(null, null, null);
     }
@@ -32,14 +31,14 @@ public class OperationsWorkflowParallelClientFactoryImpl extends WorkflowClientF
             GenericWorkflowClient genericClient) {
         super(startWorkflowOptions, new com.amazonaws.services.simpleworkflow.flow.JsonDataConverter(), genericClient);
     }
-
+    
     @Override
-    protected OperationsWorkflowParallelClient createClientInstance(WorkflowExecution execution, StartWorkflowOptions options,
-            DataConverter dataConverter, GenericWorkflowClient genericClient) {
+    protected OperationsWorkflowParallelClient createClientInstance(WorkflowExecution execution,
+            StartWorkflowOptions options, DataConverter dataConverter, GenericWorkflowClient genericClient) {
         WorkflowType workflowType = new WorkflowType();
         workflowType.setName("OperationsWorkflowParallel.execute");
         workflowType.setVersion("1.0.0");
         return new OperationsWorkflowParallelClientImpl(execution, workflowType, options, dataConverter, genericClient);
     }
-
+   
 }

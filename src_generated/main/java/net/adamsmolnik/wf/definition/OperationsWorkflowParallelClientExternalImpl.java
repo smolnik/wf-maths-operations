@@ -15,23 +15,24 @@ import com.amazonaws.services.simpleworkflow.model.WorkflowType;
 
 class OperationsWorkflowParallelClientExternalImpl extends WorkflowClientExternalBase implements OperationsWorkflowParallelClientExternal {
 
-    public OperationsWorkflowParallelClientExternalImpl(WorkflowExecution workflowExecution, WorkflowType workflowType, StartWorkflowOptions options,
-            DataConverter dataConverter, GenericWorkflowClientExternal genericClient) {
+    public OperationsWorkflowParallelClientExternalImpl(WorkflowExecution workflowExecution, WorkflowType workflowType, 
+            StartWorkflowOptions options, DataConverter dataConverter, GenericWorkflowClientExternal genericClient) {
         super(workflowExecution, workflowType, options, dataConverter, genericClient);
     }
 
     @Override
-    public void execute(double a, double b) {
+    public void execute(double a, double b) { 
         execute(a, b, null);
     }
 
     @Override
     public void execute(double a, double b, StartWorkflowOptions startOptionsOverride) {
-
-        Object[] _arguments_ = new Object[2];
+    
+        Object[] _arguments_ = new Object[2]; 
         _arguments_[0] = a;
         _arguments_[1] = b;
         dynamicWorkflowClient.startWorkflowExecution(_arguments_, startOptionsOverride);
     }
+
 
 }

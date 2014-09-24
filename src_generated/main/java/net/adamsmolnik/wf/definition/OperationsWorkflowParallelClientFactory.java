@@ -9,5 +9,5 @@ package net.adamsmolnik.wf.definition;
 import com.amazonaws.services.simpleworkflow.flow.WorkflowClientFactory;
 
 public interface OperationsWorkflowParallelClientFactory extends WorkflowClientFactory<OperationsWorkflowParallelClient> {
-
+    
 }

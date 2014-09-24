@@ -14,32 +14,31 @@ import com.amazonaws.services.simpleworkflow.flow.generic.GenericWorkflowClientE
 import com.amazonaws.services.simpleworkflow.model.WorkflowExecution;
 import com.amazonaws.services.simpleworkflow.model.WorkflowType;
 
-public class OperationsWorkflowSequentialClientExternalFactoryImpl extends
-        WorkflowClientFactoryExternalBase<OperationsWorkflowSequentialClientExternal> implements OperationsWorkflowSequentialClientExternalFactory {
+public class OperationsWorkflowSequentialClientExternalFactoryImpl extends WorkflowClientFactoryExternalBase<OperationsWorkflowSequentialClientExternal>  implements OperationsWorkflowSequentialClientExternalFactory {
 
     public OperationsWorkflowSequentialClientExternalFactoryImpl(AmazonSimpleWorkflow service, String domain) {
-        super(service, domain);
-        setDataConverter(new com.amazonaws.services.simpleworkflow.flow.JsonDataConverter());
-    }
-
-    public OperationsWorkflowSequentialClientExternalFactoryImpl() {
+		super(service, domain);
+		setDataConverter(new com.amazonaws.services.simpleworkflow.flow.JsonDataConverter());
+	}
+	
+	public OperationsWorkflowSequentialClientExternalFactoryImpl() {
         super(null);
-        setDataConverter(new com.amazonaws.services.simpleworkflow.flow.JsonDataConverter());
+		setDataConverter(new com.amazonaws.services.simpleworkflow.flow.JsonDataConverter());
     }
-
+    
     public OperationsWorkflowSequentialClientExternalFactoryImpl(GenericWorkflowClientExternal genericClient) {
         super(genericClient);
-        setDataConverter(new com.amazonaws.services.simpleworkflow.flow.JsonDataConverter());
+		setDataConverter(new com.amazonaws.services.simpleworkflow.flow.JsonDataConverter());
     }
-
+	
     @Override
-    protected OperationsWorkflowSequentialClientExternal createClientInstance(WorkflowExecution workflowExecution, StartWorkflowOptions options,
-            DataConverter dataConverter, GenericWorkflowClientExternal genericClient) {
+    protected OperationsWorkflowSequentialClientExternal createClientInstance(WorkflowExecution workflowExecution,
+            StartWorkflowOptions options, DataConverter dataConverter, GenericWorkflowClientExternal genericClient) {
         WorkflowType workflowType = new WorkflowType();
         workflowType = new WorkflowType();
         workflowType.setName("OperationsWorkflowSequential.execute");
         workflowType.setVersion("1.0.0");
         return new OperationsWorkflowSequentialClientExternalImpl(workflowExecution, workflowType, options, dataConverter, genericClient);
     }
-
+    
 }

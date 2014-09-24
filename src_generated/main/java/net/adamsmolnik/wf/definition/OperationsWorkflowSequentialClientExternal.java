@@ -9,8 +9,8 @@ package net.adamsmolnik.wf.definition;
 import com.amazonaws.services.simpleworkflow.flow.StartWorkflowOptions;
 import com.amazonaws.services.simpleworkflow.flow.WorkflowClientExternal;
 
-public interface OperationsWorkflowSequentialClientExternal extends WorkflowClientExternal {
+public interface OperationsWorkflowSequentialClientExternal extends WorkflowClientExternal
+{
     void execute(double a, double b);
-
     void execute(double a, double b, StartWorkflowOptions optionsOverride);
 }

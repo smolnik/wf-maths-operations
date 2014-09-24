@@ -10,16 +10,12 @@ import com.amazonaws.services.simpleworkflow.flow.core.Promise;
 import com.amazonaws.services.simpleworkflow.flow.StartWorkflowOptions;
 import com.amazonaws.services.simpleworkflow.flow.WorkflowClient;
 
-public interface OperationsWorkflowParallelClient extends WorkflowClient {
+public interface OperationsWorkflowParallelClient extends WorkflowClient
+{
     Promise<java.lang.Double> execute(double a, double b);
-
     Promise<java.lang.Double> execute(double a, double b, Promise<?>... waitFor);
-
     Promise<java.lang.Double> execute(double a, double b, StartWorkflowOptions optionsOverride, Promise<?>... waitFor);
-
     Promise<java.lang.Double> execute(Promise<Double> a, Promise<Double> b);
-
     Promise<java.lang.Double> execute(Promise<Double> a, Promise<Double> b, Promise<?>... waitFor);
-
     Promise<java.lang.Double> execute(Promise<Double> a, Promise<Double> b, StartWorkflowOptions optionsOverride, Promise<?>... waitFor);
 }
