@@ -30,7 +30,7 @@ public class OperationActivitiesImpl implements OperationActivities {
 
     @Override
     public double sum(List<Double> addends) {
-        double sum = 0;
+        double sum = 0.0;
         for (Double addend : addends) {
             sum += addend;
         }
